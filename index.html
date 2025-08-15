@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="ChatGPT Image Aug 14, 2025, 09_45_01 PM.png" type="image/x-icon" />
+    <title>All in one</title>
+    <style>
+        :root {
+            --bg-dark: #0b0b0b;
+            --bg-light: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --accent: #ffffff;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+            --spacing: 24px;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+
+        /* Header Styles */
+        header {
+            padding: var(--spacing) 0;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.3;
+        }
+
+        .header-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: -1px;
+            margin-bottom: var(--spacing);
+            position: relative;
+            display: inline-block;
+            cursor: default;
+            transition: var(--transition);
+        }
+
+        .header-title:hover {
+            transform: skewX(-5deg);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .header-title::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .header-title:hover::before {
+            width: 100%;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: var(--spacing);
+        }
+
+        .search-input {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .search-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .search-results {
+            display: none;
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            margin-top: var(--spacing);
+        }
+
+        .search-result-item {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-result-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-author {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .result-composition {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Composition Section */
+        .composition-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing);
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+
+        @media (max-width: 768px) {
+            .composition-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .text-area {
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            min-height: 300px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .text-area:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .text-placeholder {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .author-profile {
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            height: fit-content;
+            position: sticky;
+            top: var(--spacing);
+        }
+
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .author-avatar:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .author-info {
+            text-align: center;
+        }
+
+        .author-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .author-role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Upload Controls */
+        .upload-controls {
+            margin-top: var(--spacing);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        input,
+        textarea {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        button {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 6px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-upload input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing) 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animated Elements */
+        .floating-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .floating-dot:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-dot:nth-child(2) {
+            top: 60%;
+            left: 85%;
+            animation-delay: 0.5s;
+            width: 8px;
+            height: 8px;
+        }
+
+        .floating-dot:nth-child(3) {
+            top: 80%;
+            left: 15%;
+            animation-delay: 1s;
+            width: 4px;
+            height: 4px;
+        }
+
+        .floating-dot:nth-child(4) {
+            top: 30%;
+            left: 75%;
+            animation-delay: 1.5s;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            :root {
+                --spacing: 16px;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background Elements -->
+    <div class="floating-dot"></div>
+    <div class="floating-dot"></div>
+    <div class="floating-dot"></div>
+    <div class="floating-dot"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="header-title">All in one</h1>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search authors by name...">
+                <button class="search-btn" id="searchBtn">Search</button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <!-- Search results will appear here -->
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Composition</h2>
+            <div class="composition-section">
+                <div class="text-area" id="textArea">
+                    <p class="text-placeholder">Your composition will appear here...</p>
+                </div>
+                <div class="author-profile">
+                    <img src="https://via.placeholder.com/120" alt="Author" class="author-avatar" id="authorAvatar">
+                    <div class="author-info">
+                        <h3 class="author-name" id="authorName">Author Name</h3>
+                        <p class="author-role" id="authorRole">Writer</p>
+                    </div>
+                    <div class="upload-controls">
+                        <div class="control-group">
+                            <label for="nameInput">Author Name</label>
+                            <input type="text" id="nameInput" placeholder="Enter author name">
+                        </div>
+                        <div class="control-group">
+                            <label for="roleInput">Author Role</label>
+                            <input type="text" id="roleInput" placeholder="Enter author role">
+                        </div>
+                        <button class="file-upload">
+                            Upload Photo
+                            <input type="file" id="photoUpload" accept="image/*">
+                        </button>
+                        <button id="pasteText">Paste Text</button>
+                        <button class="file-upload">
+                            Upload Text File
+                            <input type="file" id="textUpload" accept=".txt,.doc,.docx,.pdf,.md">
+                        </button>
+                        <button id="saveAuthor">Save Author</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> all in one</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Author profile controls
+            const nameInput = document.getElementById('nameInput');
+            const roleInput = document.getElementById('roleInput');
+            const photoUpload = document.getElementById('photoUpload');
+            const authorName = document.getElementById('authorName');
+            const authorRole = document.getElementById('authorRole');
+            const authorAvatar = document.getElementById('authorAvatar');
+            const pasteTextBtn = document.getElementById('pasteText');
+            const textUpload = document.getElementById('textUpload');
+            const textArea = document.getElementById('textArea');
+            const saveAuthorBtn = document.getElementById('saveAuthor');
+
+            // Initialize authors array safely
+            let authors = [];
+            try {
+                const storedAuthors = localStorage.getItem('authors');
+                authors = storedAuthors ? JSON.parse(storedAuthors) : [];
+            } catch (e) {
+                console.error("Error loading authors from localStorage:", e);
+                authors = [];
+            }
+
+            // Update author name
+            nameInput.addEventListener('input', function () {
+                authorName.textContent = this.value || 'Author Name';
+            });
+
+            // Update author role
+            roleInput.addEventListener('input', function () {
+                authorRole.textContent = this.value || 'Writer';
+            });
+
+            // Handle photo upload
+            photoUpload.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file && file.type.match('image.*')) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        authorAvatar.src = event.target.result;
+                    };
+                    reader.onerror = function () {
+                        alert('Error loading image. Please try another file.');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle text paste
+            pasteTextBtn.addEventListener('click', async function () {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    if (text.trim()) {
+                        textArea.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`;
+                    } else {
+                        textArea.innerHTML = '<p class="text-placeholder">Clipboard is empty or contains no text</p>';
+                    }
+                } catch (err) {
+                    alert('Failed to read clipboard contents. Please paste manually.');
+                    textArea.innerHTML = '<p class="text-placeholder">Paste your text here...</p>';
+                    textArea.focus();
+                }
+            });
+
+            // Handle text file upload - more permissive file type checking
+            textUpload.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        textArea.innerHTML = `<p>${event.target.result}</p>`;
+                    };
+                    reader.onerror = function () {
+                        alert('Error reading file. Please try another file.');
+                    };
+                    reader.readAsText(file);
+                }
+            });
+
+            // Save author and composition with validation
+            saveAuthorBtn.addEventListener('click', function () {
+                const name = authorName.textContent.trim();
+                const role = authorRole.textContent.trim();
+                const composition = textArea.textContent.trim();
+
+                if (name === 'Author Name' || !name) {
+                    alert('Please enter a valid author name');
+                    nameInput.focus();
+                    return;
+                }
+
+                if (!composition || composition === 'Your composition will appear here...') {
+                    alert('Please add some composition text');
+                    textArea.focus();
+                    return;
+                }
+
+                const authorData = {
+                    name: name,
+                    role: role,
+                    avatar: authorAvatar.src,
+                    composition: textArea.innerHTML,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Check if author already exists
+                const existingIndex = authors.findIndex(a => a.name === name);
+                if (existingIndex >= 0) {
+                    if (confirm('Author already exists. Update existing entry?')) {
+                        authors[existingIndex] = authorData;
+                    } else {
+                        return;
+                    }
+                } else {
+                    authors.push(authorData);
+                }
+
+                try {
+                    localStorage.setItem('authors', JSON.stringify(authors));
+                    alert('Author and composition saved successfully!');
+                } catch (e) {
+                    console.error("Error saving to localStorage:", e);
+                    alert('Failed to save author. Your browser may not support localStorage or it may be full.');
+                }
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const searchResults = document.getElementById('searchResults');
+
+            searchBtn.addEventListener('click', searchAuthors);
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    searchAuthors();
+                }
+            });
+
+            function searchAuthors() {
+                const query = searchInput.value.trim().toLowerCase();
+                if (!query) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+
+                const filteredAuthors = authors.filter(author =>
+                    author.name.toLowerCase().includes(query)
+                );
+
+                if (filteredAuthors.length === 0) {
+                    searchResults.innerHTML = '<p>No authors found matching your search.</p>';
+                    searchResults.style.display = 'block';
+                    return;
+                }
+
+                searchResults.innerHTML = '';
+                filteredAuthors.forEach(author => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+
+                    // Extract text content from HTML composition
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = author.composition;
+                    const compositionText = tempDiv.textContent || tempDiv.innerText || '';
+
+                    resultItem.innerHTML = `
+                        <div class="result-author">${author.name} - ${author.role}</div>
+                        <div class="result-composition">${compositionText.substring(0, 150)}...</div>
+                    `;
+
+                    resultItem.addEventListener('click', function () {
+                        loadAuthorProfile(author);
+                        searchResults.style.display = 'none';
+                        searchInput.value = '';
+                    });
+
+                    searchResults.appendChild(resultItem);
+                });
+
+                searchResults.style.display = 'block';
+            }
+
+            function loadAuthorProfile(author) {
+                authorName.textContent = author.name;
+                authorRole.textContent = author.role;
+                // Ensure avatar is loaded properly
+                if (author.avatar && (author.avatar.startsWith('data:image') || author.avatar.startsWith('http'))) {
+                    authorAvatar.src = author.avatar;
+                } else {
+                    authorAvatar.src = 'https://via.placeholder.com/120';
+                }
+                textArea.innerHTML = author.composition;
+
+                // Update form fields
+                nameInput.value = author.name;
+                roleInput.value = author.role;
+
+                // Scroll to composition section
+                document.querySelector('.composition-section').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+
+            // Improved drag and drop for text area
+            textArea.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                this.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+            });
+
+            textArea.addEventListener('dragleave', function () {
+                this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            });
+
+            textArea.addEventListener('drop', function (e) {
+                e.preventDefault();
+                this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+
+                const file = e.dataTransfer.files[0];
+                if (file) {
+                    // Check if file is text or application type (more permissive)
+                    if (file.type.match('text.*') || file.type.match('application.*') ||
+                        file.name.match(/\.(txt|docx?|pdf|md)$/i)) {
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            textArea.innerHTML = `<p>${event.target.result}</p>`;
+                        };
+                        reader.onerror = function () {
+                            alert('Error reading file. Please try a different file.');
+                        };
+                        reader.readAsText(file);
+                    } else {
+                        alert('Please upload a text file (TXT, DOC, PDF, MD)');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
